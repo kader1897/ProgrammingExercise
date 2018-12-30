@@ -4,7 +4,7 @@ import util.ArrayUtil;
 
 public class InsertionSort {
 
-    private static void insertionSort(int[] input)
+    public static void insertionSort(int[] input)
     {
         for (int i = 1; i < input.length; i++)
         {

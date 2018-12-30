@@ -7,14 +7,14 @@ import java.util.*;
  */
 public class TreeOperations{
     
-    public static int treeHeight(Node node)
+    private static int treeHeight(Node node)
     {
         if(node == null)
             return 0;
         return 1 + Math.max(treeHeight(node.getLeft()), treeHeight(node.getRight()));
     }
     
-    public static void preOrderTraversal(Node node)
+    private static void preOrderTraversal(Node node)
     {
         if(node != null)
         {
@@ -24,7 +24,7 @@ public class TreeOperations{
         }
     }
     
-    public static void preOrderTraversalIterative(Node node)
+    private static void preOrderTraversalIterative(Node node)
     {
         Stack<Node> stack = new Stack<>();
         stack.push(node);
@@ -40,7 +40,7 @@ public class TreeOperations{
         System.out.println();
     }
     
-    public static int numberOfNodes(Node node)
+    private static int numberOfNodes(Node node)
     {
         if(node == null)
             return 0;
@@ -48,7 +48,7 @@ public class TreeOperations{
     }
     
     
-    public static Node binaryTreeArraySort(Node node)
+    private static Node binaryTreeArraySort(Node node)
     {
         int n = numberOfNodes(node);
         Node[] arr = new Node[n];

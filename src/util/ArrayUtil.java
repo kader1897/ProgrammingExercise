@@ -9,9 +9,15 @@ public class ArrayUtil {
         System.out.println();
     }
 
+    public static void swap(int[] array, int i1, int i2)
+    {
+        int temp = array[i1];
+        array[i1] = array[i2];
+        array[i2] = temp;
+
+    }
     public static int[] sampleUnorderedArray()
     {
-        int[] array = {7,5,3,8,4,3,9,10,2};
-        return array;
+        return new int[]{7,5,3,8,4,3,9,10,2};
     }
 }
