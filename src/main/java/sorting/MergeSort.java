@@ -1,12 +1,10 @@
 package sorting;
 
-/**
+/*
  * Created by kader.belli on 31.12.2018.
  */
 
-import util.ArrayUtil;
-
-public class MergeSort {
+class MergeSort {
     
     private static int[] merge(int[] input, int left, int right, int end)
     {
@@ -42,11 +40,6 @@ public class MergeSort {
         mergeSort(input, start, splitIndex);
         mergeSort(input, splitIndex + 1, end);
         System.arraycopy(merge(input, start, splitIndex + 1, end), 0, input, start, end - start + 1);
-    }
-    public static void main(String[] args) {
-        int[] array = ArrayUtil.sampleUnorderedArray();
-        MergeSort.mergeSort(array, 0, array.length - 1);
-        ArrayUtil.printArray(array);
     }
 }
 

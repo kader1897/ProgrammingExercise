@@ -1,8 +1,6 @@
 package sorting;
 
-import util.ArrayUtil;
-
-public class InsertionSort {
+class InsertionSort {
 
     public static void insertionSort(int[] input)
     {
@@ -16,11 +14,5 @@ public class InsertionSort {
             }
             input[j+1] = value;
         }
-    }
-
-    public static void main(String[] args) {
-        int[] array = ArrayUtil.sampleUnorderedArray();
-        insertionSort(array);
-        ArrayUtil.printArray(array);
     }
 }

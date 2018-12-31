@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class Recursion {
+class Recursion {
 
     private static void stringPermutation(String s)
     {

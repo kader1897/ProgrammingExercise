@@ -7,7 +7,7 @@ package sorting;
 
 import util.ArrayUtil;
 
-public class QuickSort {
+class QuickSort {
 
     private static int partition(int[] input, int left, int right)
     {
@@ -39,11 +39,5 @@ public class QuickSort {
             quickSort(input, left, pivotIndex - 1);
             quickSort(input, pivotIndex + 1, right);
         }
-    }
-
-    public static void main(String[] args) {
-        int[] array = ArrayUtil.sampleUnorderedArray();
-        QuickSort.quickSort(array, 0, array.length - 1);
-        ArrayUtil.printArray(array);
     }
 }

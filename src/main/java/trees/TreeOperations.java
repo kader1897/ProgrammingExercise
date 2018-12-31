@@ -5,7 +5,7 @@ import java.util.*;
 /**
  * Created by kader.belli on 24.12.2018.
  */
-public class TreeOperations{
+class TreeOperations{
     
     private static int treeHeight(Node node)
     {

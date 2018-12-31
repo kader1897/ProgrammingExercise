@@ -1,11 +1,8 @@
 package sorting;
 
-import static util.ArrayUtil.printArray;
-import static util.ArrayUtil.sampleUnorderedArray;
+class SelectionSort {
 
-public class SelectionSort {
-
-    private static void selectionSort(int[] input, int index)
+    public static void selectionSort(int[] input, int index)
     {
         if(index >= input.length)
             return;
@@ -26,7 +23,7 @@ public class SelectionSort {
         selectionSort(input, index+1);
     }
 
-    private static void selectionSortIterative(int[] input)
+    public static void selectionSortIterative(int[] input)
     {
         for (int i = 0; i < input.length; i++) {
             int value = input[i];
@@ -42,15 +39,5 @@ public class SelectionSort {
             input[minIndex] = input[i];
             input[i] = value;
         }
-    }
-
-    public static void main(String[] args) {
-        int[] array = sampleUnorderedArray();
-        selectionSort(array, 0);
-        printArray(array);
-
-        int[] newArray = sampleUnorderedArray();
-        selectionSortIterative(newArray);
-        printArray(newArray);
     }
 }
