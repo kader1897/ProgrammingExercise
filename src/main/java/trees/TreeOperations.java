@@ -1,6 +1,7 @@
 package trees;
 
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Created by kader.belli on 24.12.2018.
@@ -83,15 +84,20 @@ class TreeOperations{
     }
     public static void main(String[] args)
     {
-        Node node = constructBinaryTree();
-        System.out.println(treeHeight(node));
-        preOrderTraversal(node);
-        System.out.println();
-        preOrderTraversalIterative(node);
+//        Node node = constructBinaryTree();
+//        System.out.println(treeHeight(node));
+//        preOrderTraversal(node);
+//        System.out.println();
+//        preOrderTraversalIterative(node);
+//
+//        Node heap = binaryTreeArraySort(constructUnbalancedBinaryTree());
+//        preOrderTraversal(heap);
+//        System.out.println();
         
-        Node heap = binaryTreeArraySort(constructUnbalancedBinaryTree());
-        preOrderTraversal(heap);
-        System.out.println();
+        Node tree = readTreeFromConsole();
+        AtomicInteger diameter = new AtomicInteger(0);
+        treeDiameter(tree, diameter);
+        System.out.println("Tree diameter: " + diameter.get());
     }
     
     private static Node constructBinaryTree()
@@ -125,4 +131,55 @@ class TreeOperations{
         node.setRight(rightNode);
         return node;
     }
+/*    5 1
+    L
+    2
+    R
+    3
+    LL
+    4
+    LR
+    5*/
+    private static Node readTreeFromConsole(){
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
+        int value = scanner.nextInt();
+    
+        TreeMap<String, Integer> map = new TreeMap<>();
+        Node node = new Node(value);
+        for(int i = 1; i < n; i++)
+            map.put(scanner.next(), scanner.nextInt());
+        
+        map.forEach((strPath, val) -> {
+            char[] path = strPath.toCharArray();
+            Node current = node;
+            int j;
+            for(j = 0; j < path.length - 1; j++)
+            {
+                char c = path[j];
+                if(c == 'L')
+                    current = current.getLeft();
+                else
+                    current = current.getRight();
+            }
+
+            if(path[j] == 'L') current.setLeft(new Node(value));
+            else current.setRight(new Node(value));
+        });
+        
+        return node;
+    }
+    
+    public static int treeDiameter(Node node, AtomicInteger maxPathLength)
+    {
+        if(node == null)
+            return 0;
+        int leftDiameter = treeDiameter(node.getLeft(), maxPathLength);
+        int rightDiameter = treeDiameter(node.getRight(), maxPathLength);
+        if(rightDiameter + leftDiameter + 1> maxPathLength.get())
+            maxPathLength.set(rightDiameter + leftDiameter + 1);
+        return  Math.max(rightDiameter, leftDiameter) + 1;
+    }
+    
+
 }
