@@ -58,6 +58,15 @@ public class SortTest{
     }
     
     @Test
+    public void testHeapSort(){
+        int[] arr = new int[array.length];
+        System.arraycopy(array, 0, arr, 0, array.length);
+        
+        HeapSort.heapSort(arr);
+        assertArrayEquals(arr, orderedArray);
+    }
+    
+    @Test
     public void testSingleElementSelectionSort()
     {
         int[] arr = ArrayUtil.singleElementArray();
