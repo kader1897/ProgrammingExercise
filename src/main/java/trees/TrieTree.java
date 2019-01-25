@@ -1,6 +1,7 @@
 package trees;
 
 import java.util.Scanner;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Created by kader.belli on 25.01.2019.
@@ -49,13 +50,44 @@ public class TrieTree{
                 node.weight = value;
             }
         }
-        System.out.println();
         
+        queryExecution:
+        for(i = 0; i < q; i++)
+        {
+            char[] query = s.next().trim().toCharArray();
+            TrieNode current = root;
+            for(char c : query)
+            {
+                int index = charToIndex(c);
+                TrieNode node = current.children[index];
+                if(node == null)
+                {
+                    System.out.println(-1);
+                    continue queryExecution;
+                }
+                current = node;
+            }
+            
+            AtomicInteger maxPriority = new AtomicInteger(-1);
+            findMaxPriorityString(current, maxPriority);
+            System.out.println(maxPriority.get());
+        }
     }
     
     private static int charToIndex(char c)
     {
         return c - 'a';
+    }
+    
+    private static void findMaxPriorityString(TrieNode node, AtomicInteger maxPriority)
+    {
+        if(node.weight != null && node.weight > maxPriority.get())
+            maxPriority.set(node.weight);
+        for(TrieNode n : node.children)
+        {
+            if(n != null)
+                findMaxPriorityString(n, maxPriority);
+        }
     }
 }
 
